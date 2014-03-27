@@ -1,0 +1,39 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET 	/raw/categories		controllers.raw.Get.getCategories()
+
+GET		/categories			controllers.Application.prepareCategoryPage()
+
+GET		/views			controllers.Application.prepareViewsPage()
+
+GET		/upload/viewobject				controllers.UploadController.prepareUploadViewForm()
+GET		/delete/categories/:id			controllers.Application.removeCategory(id: String)
+
+GET		/delete/views/:id				controllers.Application.removeView(id: String)
+
+POST	/upload/category			controllers.UploadController.uploadCategory()
+
+POST	/upload/view/images/:id		controllers.UploadController.uploadImagesForView(id: String)
+
+GET		/add/views/images/:id		controllers.Application.prepareUploadImagesFOrViewPage(id: String)
+
+POST	/upload/view			controllers.UploadController.uploadView()
+
+GET		/upload/category			controllers.Application.getCategoryUploadForm()
+
+
+GET		/edit/categories/:id			controllers.Application.editCategory(id: String)
+#GET		/images/:image_name			controllers.Application.getImage(image_name: String)
+
+
+POST		/edit/categories/:id			controllers.UploadController.uploadEditedCategory(id: String)
+# Home page
+GET     /                           controllers.Application.index()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public/", file)
+
+
+GET     /images/*file               controllers.Application.getImage(file)

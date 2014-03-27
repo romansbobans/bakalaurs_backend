@@ -1,0 +1,181 @@
+@(types: Array[String]) <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<form id="my_form" class="appnitro"  method="post" action="@routes.UploadController.uploadView()">
+	<div class="form_description">
+
+	</div>
+	<ul >
+
+		<li id="li_5" >
+
+			<label class="description" for="type">Tips </label>
+			<div>
+				<select id="select" name="type">
+					@for(t <- types){
+					<option>@t</option>
+					}
+				</select>
+			</div>
+			<label for="lang">Valoda </label>
+			<div>
+				<select id="select" name="lang">
+					@for(language <- constants.ViewConstants.supportedLanguages){
+					<option>@language</option>
+					}
+				</select>
+			</div>
+		</li>
+		<li id="li_1" >
+			<label class="description" for="viewname">Nosaukums </label>
+			<div>
+				<input id="element_1" name="viewname" class="element text medium" type="text" maxlength="255" value=""/>
+			</div>
+		</li>
+		<li >
+			<label  for="shortDescription">Īss apraksts </label>
+			<div>
+				<textarea id="element_2" name="shortDescription" class="element textarea medium"></textarea>
+			</div>
+		</li>
+		<li id="li_2" >
+			<label class="description" for="description">Apraksts </label>
+			<div>
+				<textarea id="element_2" name="description" class="element textarea medium"></textarea>
+			</div>
+		</li>
+		<li id="li_3" >
+			<label>Darba laiks </label>
+			<div>
+				<span>
+					<input class="workinghrs" name= "workinghrs_day0" class="element text" maxlength="255" size="8" value=""/>
+					<label>diena</label> </span>
+				<span>
+					<input class="workinghrs"  name= "workinghrs_hrs0" class="element text" maxlength="255" size="14" value=""/>
+					<label>laiks</label> </span>
+				<span>
+					<button val="+" type="button" id="addPrice">
+						+
+					</button></span>
+				<span>
+					<button val="-" id="removePrice">
+						-
+					</button></span>
+
+			</div>
+		</li>
+		<li id="li_4" >
+
+			<div>
+				<span> <label>Grupa</label>
+					<input name= "groups_group0" class="element text" maxlength="255" size="8" value=""/>
+				</span>
+				<span> <label>Cena</label>
+					<input name= "groups_price0" class="element text" maxlength="255" size="14" value=""/></span>
+					<span>
+						<button val="+" id="addGroup">
+							+
+						</button></span> <span>
+						<button val="-" id="removeGroup">
+							-
+						</button></span>
+			</div>
+
+		</li>
+
+		<li class="buttons">
+			<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
+		</li>
+	</ul>
+</form>
+
+<script>
+
+
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || "nulld");
+        } else {
+            o[this.name] = (this.value || "nulld");
+        }
+    });
+    return o;
+};
+
+	$(document).ready(function() {
+		$('#saveForm').click(function(e) {
+
+			e.preventDefault();
+
+			var obj = $("#my_form").serializeObject();
+			obj = JSON.stringify(obj);
+			
+			$.ajax({
+							type : "POST",
+							url : "@routes.UploadController.uploadView()",
+							contentType: "application/json; charset=utf-8",
+							dataType: "json",
+							data : obj,
+							success : function(msg) {
+								alert(msg);
+							}
+						});
+			
+			
+		});
+	});
+
+	var workinghrsIdIndex = 1;
+
+	var groupIndex = 1;
+
+	$(document).ready(function() {
+		$('#addPrice').click(function(e) {
+			var newelement = $(this).parent().parent().clone(true, true);
+			newelement.find("input").val("");
+			$(newelement).find("[name=workinghrs_day0]").attr("name", "workinghrs_day" + (workinghrsIdIndex) );
+
+			$(newelement).find("[name=workinghrs_hrs0]").attr("name", "workinghrs_hrs" + (workinghrsIdIndex) );
+			
+			workinghrsIdIndex++
+			newelement.appendTo($(this).parent().parent().parent());
+		});
+	});
+
+	$(document).ready(function() {
+		$('#removePrice').click(function(e) {
+			var parent = $(this).parent().parent();
+			//console.log(parent.parent().children("div").length);
+
+			if (parent.parent().children("div").length > 1)
+				parent.remove();
+		});
+	});
+
+	$(document).ready(function() {
+		$('#addGroup').click(function(e) {
+			var newelement = $(this).parent().parent().clone(true, true);
+			newelement.find("input").val("");
+			$(newelement).find("[name=groups_group0]").attr("name", "groups_group" + (workinghrsIdIndex));
+
+			$(newelement).find("[name=groups_price0]").attr("name", "groups_price" + (workinghrsIdIndex));
+			workinghrsIdIndex++
+			newelement.appendTo($(this).parent().parent().parent());
+		});
+	});
+
+	$(document).ready(function() {
+		$('#removeGroup').click(function(e) {
+			var parent = $(this).parent().parent();
+			if (parent.parent().children("div").length > 1)
+				parent.remove();
+		});
+	});
+
+</script>

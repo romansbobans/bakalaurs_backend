@@ -1,0 +1,56 @@
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+<form method="post" action="@routes.UploadController.uploadCategory()" enctype="multipart/form-data">
+	<p>
+		<select id="select" name="lang">
+			<option></option>
+			<option>LV</option>
+			<option>ENG</option>
+		</select>
+		<label>Category Name</label>
+		<input id="inputVal" type="text" name="category" />
+		 <label>Image:</label><input type="file" id="image" name="picture" accept="image/*">
+		<br/>
+
+	</p>
+	<p>
+		<button  type="button" class="add" >
+			Add fields
+		</button>
+
+		<button type="button" class="remove">
+			Remove
+		</button>
+		<input type="submit" value="Submit!" />
+	</p>
+
+</form>
+
+<script>
+
+	var i = 0;
+	$(".add").click(function() {
+
+		$a = $("form > p:first-child").clone(true);
+
+		$(this).parent().before($a);
+		$a.find("#select").attr("name", "lang" + i);
+		$a.find("#select").val("");
+		$a.find("#inputVal").attr("name", "category" + i);
+		$a.find("#inputVal").val("");
+		$a.find("#image").attr("name", "picture" + i);
+		$a.find("#image").val("");
+		i++;
+
+		return false;
+	});
+
+	$(".remove").click(function() {
+		form = $("form").children("p");
+		count = form.length;
+		if (count > 2) {
+			form.get(count - 2).remove();
+		}
+	}); 
+</script>
