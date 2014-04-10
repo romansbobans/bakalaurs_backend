@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
 
+import play.Logger;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
 import views.html.categories;
@@ -74,12 +75,21 @@ public class FileManager {
 			if (picture != null) {
 				String fileName = picture.getFilename();
 				File file = picture.getFile();
-				
+
+                System.out.println(file.length());
+
+
 				BufferedImage image = ImageIO.read(file);
-				
+
 				BufferedImage thumb = ImageUtils.resizeImage(image);
+
+
+                Logger.error( "size: " +file.length() + "   name: " + fileName + "  " + fileName.lastIndexOf('.'));
+
 				fileName = fileName.substring(0, fileName.lastIndexOf('.'));
-				
+
+                Logger.error( "size: " +file.length() + "   name: " + fileName + "  " + fileName.lastIndexOf('.'));
+
 				int size = (int) (file.length()/1024/1024);
 				if (size > 1)
 				{

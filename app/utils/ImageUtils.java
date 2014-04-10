@@ -2,6 +2,7 @@ package utils;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.logging.Logger;
 
 public class ImageUtils {
  
@@ -14,9 +15,11 @@ public class ImageUtils {
     	
 
     	int origWidth = originalImage.getWidth();
-    	Double factor = (double) (origWidth/IMG_WIDTH);
+    	Double factor = (double) ((double)origWidth)/IMG_WIDTH;
     	int height = (int) (originalImage.getHeight()/factor);
 		int type = originalImage.getType() == 0? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
+
+        System.out.println(IMG_WIDTH + "  " + height + "  " + originalImage.getHeight() + "   " + factor + "   " + origWidth);
 	BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, height, type);
 	Graphics2D g = resizedImage.createGraphics();
 	g.drawImage(originalImage, 0, 0, IMG_WIDTH, height, null);

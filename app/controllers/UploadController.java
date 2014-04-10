@@ -9,6 +9,7 @@ import org.json.JSONException;
 
 import com.google.common.io.Files;
 
+import play.Logger;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.BodyParser;
@@ -51,10 +52,12 @@ public class UploadController extends Controller {
 					.uploadCategory(group);
 		} catch (FileTooLargeException e) {
 
+            e.printStackTrace();
 		}
 
 		catch (Exception exception) {
-			StringBuilder b = new StringBuilder();
+            exception.printStackTrace();
+            StringBuilder b = new StringBuilder();
 			b.append(exception.getMessage());
 			for (StackTraceElement element : exception.getStackTrace())
 				b.append(element.toString()).append('\n');
@@ -93,10 +96,14 @@ public class UploadController extends Controller {
 		CategoryGroup group = coll.getCategory(id);
 		final Map<String, String[]> values = body.asFormUrlEncoded();// .toString();
 
+
+        Logger.error("--------\n" + values.toString());
+
 		List<Category> categories = new CategoryManager()
 				.createCategories(values);
 
 
+        Logger.error("--------\n" + categories.toString());
 			group.setCategories(categories);
 			
 			DBConnectionFactory.getDatabase().getCollection()
