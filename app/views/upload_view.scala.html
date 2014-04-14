@@ -126,7 +126,7 @@ $.fn.serializeObject = function()
 			
 			$.ajax({
 							type : "POST",
-							url : "@routes.UploadController.uploadView()",
+							url : "upload/view",
 							contentType: "application/json; charset=utf-8",
 							data : obj,
 							success:function (data){
