@@ -121,7 +121,7 @@ public class UploadController extends Controller {
 			ids[counter] = g.getId();
 			counter++;
 		}
-		return ok(upload_view.render(ids));
+		return ok(upload_view.render(ids, routes.UploadController.uploadView().url()));
 	}
 	
 	public static Result uploadImagesForView(String id) {

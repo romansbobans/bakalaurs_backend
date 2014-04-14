@@ -1,14 +1,14 @@
-@(types: Array[String])
+@(types: Array[String], uploadUrl: String)
 
 <html>
     <head>
-        <title>Upload new view</title>
+        <title>Upload New View</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
     </head>
     <body>
-<form id="my_form" class="appnitro"  method="post" action="/upload/view">
+<form id="my_form" class="appnitro"  method="post" action=@uploadUrl>
 	<div class="form_description">
 
 	</div>
@@ -126,7 +126,7 @@ $.fn.serializeObject = function()
 			
 			$.ajax({
 							type : "POST",
-							url : "/upload/view",
+							url : @uploadUrl,
 							contentType: "application/json; charset=utf-8",
 							data : obj,
 							success:function (data){
