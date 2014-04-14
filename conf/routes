@@ -2,7 +2,10 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET 	/raw/categories		controllers.raw.Get.getCategories()
+GET        /raw/categories        controllers.Raw.getCategories()
+
+GET        /raw/views/:id         controllers.Raw.getViews(id: String)
+
 
 GET		/categories			controllers.Application.prepareCategoryPage()
 
