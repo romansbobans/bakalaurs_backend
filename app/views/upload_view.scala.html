@@ -6,11 +6,26 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <script>
+            //@routes.UploadController.uploadView()
+            function()
+            {
+            //@routes.UploadController.uploadView()
+            }
 
+            $(document).ready(function() {
+            //@routes.UploadController.uploadView()
+            }
+
+        </script>
     </head>
     <body>
 
-<form id="saveForm" method="post">
+
+        @routes.UploadController.uploadView()
+<form id="saveForm"  method="post" action="@routes.UploadController.uploadView()">
+    <div name="@routes.UploadController.uploadView()"/>
+    <div name="/romans/upload"/>
 
     <div class="form_description">
 
@@ -126,7 +141,7 @@ $.fn.serializeObject = function()
 
 			var obj = $("#my_form").serializeObject();
 			obj = JSON.stringify(obj);
-			var url = "/romans/upload/view;
+			var url = @routes.UploadController.uploadView();
 			$.ajax({
 							type : "POST",
 							url : url,
