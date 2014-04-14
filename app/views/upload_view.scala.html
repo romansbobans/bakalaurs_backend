@@ -123,10 +123,10 @@ $.fn.serializeObject = function()
 
 			var obj = $("#my_form").serializeObject();
 			obj = JSON.stringify(obj);
-			
+			var url = @routes.UploadController.uploadView();
 			$.ajax({
 							type : "POST",
-							url : '@routes.UploadController.uploadView()',
+							url : url,
 							contentType: "application/json; charset=utf-8",
 							data : obj,
 							success:function (data){
