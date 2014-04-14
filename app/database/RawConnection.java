@@ -6,4 +6,6 @@ package database;
 public interface RawConnection {
 
     String[] getCategories();
+
+    String[] getViews(String id);
 }
