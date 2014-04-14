@@ -1,14 +1,14 @@
-@(types: Array[String], uploadUrl: String)
+@(types: Array[String])
 
 <html>
     <head>
-        <title>Upload</title>
+        <title>Upload new view</title>
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
     </head>
     <body>
-<form id="my_form" class="appnitro"  method="post" action=@uploadUrl>
+<form id="my_form" class="appnitro"  method="post" action="@routes.UploadController.uploadView()">
 	<div class="form_description">
 
 	</div>
@@ -115,7 +115,7 @@ $.fn.serializeObject = function()
     });
     return o;
 };
-//@uploadUrl
+
 	$(document).ready(function() {
 		$('#saveForm').click(function(e) {
 
@@ -126,7 +126,7 @@ $.fn.serializeObject = function()
 			
 			$.ajax({
 							type : "POST",
-							url : @uploadUrl,
+							url : "romans/upload/view",
 							contentType: "application/json; charset=utf-8",
 							data : obj,
 							success:function (data){
