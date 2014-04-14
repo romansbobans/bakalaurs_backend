@@ -1,5 +1,13 @@
-@(types: Array[String]) <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+@(types: Array[String])
 
+<html>
+    <head>
+        <title>Upload new view</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+    </head>
+    <body>
 <form id="my_form" class="appnitro"  method="post" action="@routes.UploadController.uploadView()">
 	<div class="form_description">
 
@@ -120,11 +128,15 @@ $.fn.serializeObject = function()
 							type : "POST",
 							url : "@routes.UploadController.uploadView()",
 							contentType: "application/json; charset=utf-8",
-							dataType: "json",
 							data : obj,
-							success : function(msg) {
-								alert(msg);
-							}
+							success:function (data){
+                location.href = data;
+
+            },
+            error: function(data) {
+               alert("Oops Something Went Wrong " + data.status);
+
+            }
 						});
 			
 			

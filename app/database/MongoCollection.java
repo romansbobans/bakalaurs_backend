@@ -1,26 +1,19 @@
 package database;
 
 
-import java.io.File;
-import java.util.Iterator;
-import java.util.List;
-
-import utils.MongoFieldNames;
 import Holders.Category;
 import Holders.CategoryGroup;
 import Holders.VisitObject;
 import Holders.VisitObjectGroup;
 import Holders.utils.ImageThumbnailPair;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mongodb.BasicDBList;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
-import com.mongodb.DBObject;
-import com.mongodb.WriteResult;
+import com.mongodb.*;
+import utils.MongoFieldNames;
+
+import java.io.File;
+import java.util.Iterator;
+import java.util.List;
 
 class MongoCollection implements ICollection {
 
@@ -135,6 +128,9 @@ class MongoCollection implements ICollection {
 		dbObject.append(MongoFieldNames.ID, object.getObjectName());
 
 		dbObject.append(MongoFieldNames.CATEGORY_ID, object.getCategoryId());
+
+        dbObject.
+                append(MongoFieldNames.Views.PAIR_ARRAY, new BasicDBList());
 	
 		BasicDBList list = new BasicDBList(); list.add(createVisitObject(object));
 		dbObject.append(MongoFieldNames.OBJECT_ARRAY, list);
@@ -212,7 +208,6 @@ class MongoCollection implements ICollection {
 	@Override
 	public boolean removeObject(String id) {
 		DBObject object = viewsCollection.findAndRemove(new BasicDBObject(MongoFieldNames.ID, id));
-		
 		String imagePair = object.get(MongoFieldNames.Views.PAIR_ARRAY).toString();
 		Gson gson = new GsonBuilder().create();
 		

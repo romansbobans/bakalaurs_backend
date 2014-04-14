@@ -1,14 +1,14 @@
 package controllers;
 
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
+import Exceptions.FileTooLargeException;
+import Holders.Category;
+import Holders.CategoryGroup;
+import Holders.VisitObject;
+import Holders.utils.ImageThumbnailPair;
+import database.DBConnectionFactory;
+import database.ICollection;
 import org.json.JSONException;
-
-import com.google.common.io.Files;
-
 import play.Logger;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -21,13 +21,10 @@ import utils.CategoryManager;
 import utils.FileManager;
 import utils.ViewManager;
 import views.html.upload_view;
-import Exceptions.FileTooLargeException;
-import Holders.Category;
-import Holders.CategoryGroup;
-import Holders.VisitObject;
-import Holders.utils.ImageThumbnailPair;
-import database.DBConnectionFactory;
-import database.ICollection;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class UploadController extends Controller {
 
@@ -84,8 +81,8 @@ public class UploadController extends Controller {
 			b.append(reqJSON.replaceAll("=", ":"));
 			return badRequest();
 		}
-        
-		return Application.index();
+        System.out.print("UPLOADED VIEW, RETURNING");
+		return ok("/");//Application.index();
 	}
 
 	public static Result uploadEditedCategory(String id) {
