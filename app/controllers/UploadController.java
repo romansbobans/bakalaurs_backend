@@ -79,7 +79,7 @@ public class UploadController extends Controller {
 			for (StackTraceElement element : e.getStackTrace())
 				b.append(element.toString()).append('\n');
 			b.append(reqJSON.replaceAll("=", ":"));
-			return badRequest();
+			return badRequest(b.toString());
 		}
         System.out.print("UPLOADED VIEW, RETURNING");
 		return ok("/");//Application.index();

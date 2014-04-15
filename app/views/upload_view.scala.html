@@ -6,28 +6,10 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
-        <script>
-            //@routes.UploadController.uploadView()
-            function()
-            {
-            //@routes.UploadController.uploadView()
-            }
-
-            $(document).ready(function() {
-            //@routes.UploadController.uploadView()
-            }
-
-        </script>
     </head>
     <body>
-
-
-        @routes.UploadController.uploadView()
-<form id="saveForm"  method="post" action="@routes.UploadController.uploadView()">
-    <div name="@routes.UploadController.uploadView()"/>
-    <div name="/romans/upload"/>
-
-    <div class="form_description">
+<form id="my_form" class="appnitro"  method="post" action="@routes.UploadController.uploadView()">
+	<div class="form_description">
 
 	</div>
 	<ul >
@@ -141,18 +123,18 @@ $.fn.serializeObject = function()
 
 			var obj = $("#my_form").serializeObject();
 			obj = JSON.stringify(obj);
-			var url = "/romans/upload/view";
+
 			$.ajax({
 							type : "POST",
-							url : url,
+							url : "@routes.UploadController.uploadView()",
 							contentType: "application/json; charset=utf-8",
 							data : obj,
 							success:function (data){
-                location.href = data;
+                alert(data);
 
             },
             error: function(data) {
-               alert("Oops Something Went Wrong " + data.status);
+               alert("Oops Something Went Wrong " + data);
 
             }
 						});
@@ -209,6 +191,5 @@ $.fn.serializeObject = function()
 	});
 
 </script>
-
     </body>
     </html>
