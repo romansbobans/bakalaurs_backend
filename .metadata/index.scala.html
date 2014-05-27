@@ -1,4 +1,7 @@
-@(holders: Array[Holders.VisitObjectGroup])
+@*
+/*
+@(categories: Array[Holders.CategoryGroup])
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,41 +44,25 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="/categories">Kategorijas</a></li>
+            <li><a href="/views">Objekti</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
+     <ul>
+
+         @for(category <- categories){
+
+             <li>
+
+                 <img src="/images/@category.getImage()"/>
+                 <p>dsfsd</p>
+             </li>
+         }
+     </ul>
 
 
-<div style="height: 100px"></div>
-
-<div> <a href="/upload/viewobject">Pievienot jaunu</a></div>
-<div class="collapse navbar-collapse">
-	<ul >
-	
-	@for(group <- holders){
-    <li style="border-bottom: 2px solid gray; margin-bottom: 10px"><a href="/views/@group.getId()">@group.getId() <br />
-    
-    @for(pair <- group.getImagePairs()){
-    <span><img src="/images/@pair.getThumbnailPath()"/></span>
-    	
-    }
-    	<a href="/edit/views/@group.getId()">Labot sadaļu </a>
-
-    	<a href="/add/views/@group.getId()">Pievienot saturu </a>
-    	
-    	<a href="/add/views/images/@group.getId()">Pievienot attēlus </a>
-    	
-    	
-    	<a href="/delete/views/@group.getId()">Dzēst skatu<br/></a>
-    </li>
-    
-}
-	
-	</ul>
-	
-</div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -83,3 +70,5 @@
     <script src='@routes.Assets.at("javascripts/bootstrap.min.js")'></script>
   </body>
 </html>
+*/
+*@

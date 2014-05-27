@@ -1,4 +1,4 @@
-@(images: Array[Holders.utils.ImageThumbnailPair], id: String)
+@(holders: Array[Holders.VisitObjectGroup])
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +11,7 @@
     <title>sad</title>
 
     <!-- Bootstrap core CSS -->
-    <link href='@routes.Assets.at("stylesheets/bootstrap.min.css")' rel="stylesheet">
+    <link href='@routes.Assets.at("../public/stylesheets/bootstrap.min.css")' rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -23,7 +23,7 @@
     <![endif]-->
   </head>
 
-   <body>
+  <body>
 
 
 
@@ -52,18 +52,34 @@
 
 <div> <a href="/upload/viewobject">Pievienot jaunu</a></div>
 <div class="collapse navbar-collapse">
+	<ul >
+	
+	@for(group <- holders){
+    <li style="border-bottom: 2px solid gray; margin-bottom: 10px"><a href="/views/@group.getId()">@group.getId() <br />
+    
+    @for(pair <- group.getImagePairs()){
+    <span><img src="/images/@pair.getThumbnailPath()"/></span>
+    	
+    }
+    	<a href="/edit/views/@group.getId()">Labot sadaļu </a>
 
-        <form method="post" action="@routes.UploadController.uploadImagesForView(id)" enctype="multipart/form-data"> >
-        <input type="file" id="image" name="pictures" accept="image/*">
-        <input type="file" id="image" name="pictures" accept="image/*">
-        <input type="file" id="image" name="pictures" accept="image/*">
-        <input type="submit" value="Submit!"></input>
-        </form>
-    </div>
+    	<a href="/add/views/@group.getId()">Pievienot saturu </a>
+    	
+    	<a href="/add/views/images/@group.getId()">Pievienot attēlus </a>
+    	
+    	
+    	<a href="/delete/views/@group.getId()">Dzēst skatu<br/></a>
+    </li>
+    
+}
+	
+	</ul>
+	
+</div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src='@routes.Assets.at("javascripts/bootstrap.min.js")'></script>
+    <script src='@routes.Assets.at("../public/javascripts/bootstrap.min.js")'></script>
   </body>
 </html>
