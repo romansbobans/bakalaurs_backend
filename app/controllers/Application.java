@@ -21,7 +21,8 @@ public class Application extends Controller {
 			.getCollection();
 	public static Result index() {
 
-		return ok(views.html.index.render());
+        CategoryGroup[] groups = coll.getAllCategories();
+		return ok(newviews.html.index.render());
 	}
 	
 	public static Result editCategory(String id) {

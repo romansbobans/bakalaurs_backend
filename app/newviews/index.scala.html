@@ -1,0 +1,97 @@
+<html>
+<head>
+    <link href="@routes.Assets.at("stylesheets/style.css")" rel="stylesheet" type="text/css" >
+</head>
+<body>
+<div ng-app="category-app">
+    <div ng-controller="MainPageController">
+        <input ng-click="openAddCategory()" type="button" id="new-category" class="input-hover"  value="Add Category" >
+        <br>
+        <article ng-repeat="item in categoryData" class="container">
+            <aside class="options">
+                <ul>
+                    <li><a ng-click="openImageWindow(item)" href="#" class="btn-link">Change Picture</a></li>
+                    <li><a ng-click="openEditWindow(item)" href="#" class="btn-link">Edit</a></li>
+                    <li><a ng-click="openDeleteCategory(item)" href="#" class="btn-link">Delete</a></li>
+                    <li><a  href="views.html?{{item.id}}" class="btn-link">Open</a></li>
+                </ul>
+            </aside>
+
+            <figure class="thumbnail">
+                <img src="http://placekitten.com/g/150/150">
+            </figure>
+
+            <div class="view-detail">
+                <h3>{{item.title}}</h3>
+                <p>{{item.description}}</p>
+            </div>
+        </article>
+        <div class="clear"></div>
+
+        <div class="lock"></div>
+
+        <div id="add-category-window" class="fly-window category-window">
+            <input ng-click="closeAddCategory()" type="button" value="x" class="btn-close">
+            <section class="input-data-container input-add-category">
+                <form method="POST">
+                    <div ng-repeat="item in newCategories">
+                        <label for="lang">Language</label>
+                        <select id="lang" name="lang" required>
+                            <option value="lv" selected>LV</option>
+                            <option value="en">EN</option>
+                        </select>
+
+                        <label for="description">Title</label>
+                        <input type="textarea" id="description" required>
+
+                        <span ng-switch on="getAddButtonType(item, newCategories.length)">
+                            <input ng-switch-when="false" ng-click="addNewField()" type="button" value="+" class="btn-add-category">
+                            <input ng-switch-when="true" ng-click="removeField(item)" type="button" value="-" class="btn-add-category">
+                        </span>
+                        <br>
+                    </div>
+
+                    <input type="submit" value="Save" class="btn-submit input-hover">
+                </form>
+            </section>
+        </div>
+
+        <div id="edit-category-window" class="fly-window category-window">
+            <input ng-click="closeEditWindow()" type="button" value="x" class="btn-close">
+            <section class="input-data-container input-add-category">
+                <form method="POST">
+                    <div ng-repeat="item in actionData.object_description">
+                        <label>Language</label>
+                        <select name="lang" ng-selected="{{item.lang}}" required>
+                            <option value="LV">LV</option>
+                            <option value="ENG">EN</option>
+                        </select>
+
+                        <label>Title</label>
+                        <input type="textarea" value="{{item.name}}"required>
+                    </div>
+
+                    <input type="submit" value="Save" class="btn-submit input-hover">
+                </form>
+            </section>
+        </div>
+
+        <div id="change-image-window" class="fly-window upload-window">
+            <input type="file" accept="image/*" image="image" class="file-input"/>
+            <div class="two-button-container">
+                <input ng-click="closeImageWindow()" type="button"  value="cancel" class="btn-submit input-hover">
+                <input ng-click="uploadImage()" type="button" value="change" class="btn-submit input-hover">
+            </div>
+        </div>
+
+        <div id="delete-category-window" class="fly-window delete-window two-button-container">
+            <input ng-click="deleteCategory()" type="button" value="yes" name="yes" class="btn-submit input-hover">
+            <input ng-click="closeDeleteCategory()" type="button"  value="no" name="no" class="btn-submit input-hover">
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-2.1.1.min.js")" ></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/angular.min.js")" ></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/category.js")" ></script>
+</body>
+</html>

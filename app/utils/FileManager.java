@@ -13,8 +13,7 @@ import org.apache.commons.io.FileUtils;
 import play.Logger;
 import play.mvc.Http.MultipartFormData;
 import play.mvc.Http.MultipartFormData.FilePart;
-import views.html.categories;
-import Exceptions.FileTooLargeException;
+import exceptions.FileTooLargeException;
 import Holders.utils.ImageThumbnailPair;
 
 public class FileManager {

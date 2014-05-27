@@ -4,9 +4,11 @@ import java.util.Map;
 
 public class MongoFieldNames {
 
-	public static class Categories
+
+    public static class Categories
 	{
 
+        public static final String SHORT_DESCRIPTION = "shortDescription";
 		public static final String LANG = "lang";
 		public static final String NAME = "name";
 		public static final String THUMB_URL = "thumb_url";

@@ -25,7 +25,12 @@ public class MongoConnection implements DBConnection {
 			throw new RuntimeException("Unable to connect to MongoDB");
 		}
 	}
-	
+
+
+    public DB getDatabase()
+    {
+        return db;
+    }
 	@Override
 	public ICollection getCollection() {
 		return new MongoCollection(db);

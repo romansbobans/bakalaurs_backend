@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css" >
+    </head>
+    <body>
+        <div ng-app="views-app">
+            <div ng-controller="MainPageController">
+                <article ng-repeat="item in viewsData" class="container">
+                    <aside class="options">
+                        <ul>
+                            <li><a href="views/gallery.html?{{item.id}}" class="btn-link">Gallery</a></li>
+                            <li><a ng-click="changePicture(item)" href="#" class="btn-link">Change Picture</a></li>
+                            <li><a ng-click="openEditWindow(item)" href="#" class="btn-link">Edit</a></li>
+                            <li><a ng-click="addLang(item)" href="#" class="btn-link">Add Language Support</a></li>
+                            <li><a ng-click="openDeleteWindow(item)" href="#" class="btn-link">Delete</a></li>
+                            <li><a ng-click="deleteLang(item)" href="#" class="btn-link">Delete Language Support</a></li>
+                        </ul>
+                    </aside>
+
+                    <figure class="thumbnail">
+                        <img src="http://placekitten.com/g/150/150">
+                    </figure>
+
+                    <div class="view-detail">
+                        <h3>{{item.title}}</h3>
+                        <p>{{item.description}}</p>
+                    </div>
+                </article>
+                <div class="clear"></div>
+
+                <div class="lock"></div>
+
+                <div id="edit-window" class="fly-window">
+                    <input ng-click="closeEditWindow()" type="button" value="x" class="btn-close">
+                    <section class="input-data-container">
+                        <form method="POST">
+                            <label>Language: LV</label>
+
+                            <br>
+
+                            <label for="title">Title</label>
+                            <input type="text" id="title" required>
+
+                            <br>
+
+                            <label for="description"> Short Description</label>
+                            <input type="textarea" id="description" required>
+
+                            <br>
+                            <label>Place</label>
+                            <br>
+
+                            <label for="latitude">Lat</label>
+                            <input type="text" id="latitude" required>
+                            <br>
+                            <label for="longitude">Lng</label>
+                            <input type="text" id="longitude" required>
+
+                            <br>
+                            <label>Working Hours</label>
+                            <br>
+
+                            <label for="days">Days</label>
+                            <input type="text" id="days" required>
+                            <br>
+                            <label for="time">Time</label>
+                            <input type="text" id="time" required>
+
+                            <br>
+                            <label>Prices</label>
+                            <br>
+
+                            <label for="group">Group</label>
+                            <input type="text" id="group" required>
+                            <br>
+
+                            <label for="price">Price</label>
+                            <input type="text" id="price" required>
+                            <br>
+
+                            <input type="submit" value="Save" class="btn-submit input-hover">
+                        </form>
+                    </section>
+                </div>
+
+                <div id="delete-view-window" class="fly-window delete-window two-button-container">
+                    <input ng-click="deleteView()" type="button" value="yes" name="yes" class="btn-submit input-hover">
+                    <input ng-click="closeDeleteViewWindow()" type="button"  value="no" name="no" class="btn-submit input-hover">
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js" ></script>
+        <script type="text/javascript" src="js/angular.min.js" ></script>
+        <script type="text/javascript" src="js/views.js" ></script>
+    </body>
+</html>

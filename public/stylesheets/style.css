@@ -1,0 +1,221 @@
+body {
+    width: 80%;
+    margin: auto;
+}
+
+a:link,:visited, :active {
+    color: #000000;
+}
+
+#new-category {
+    float: right;
+    border: none;
+    width: 10em;
+    height: 2em;
+    margin-top: 1em;
+}
+
+br {
+    clear: both;
+}
+
+.container {
+    border: 1px solid tomato;
+    border-radius: 6px;
+    min-height: 150px;
+    margin: 2% 0;
+    overflow: hidden;
+    padding: 2%;
+}
+
+.options {
+    float: left;
+    display: block;
+    width: 20%;
+}
+
+    .options ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .options li {
+        padding: 0 4%;
+        margin-bottom: 2%;
+        box-shadow: -0.2px 0.2px 1px;
+    }
+
+    .options li:hover {
+        background-color: tomato;
+    }
+
+    .options a {
+        text-decoration: none;
+    }
+
+.thumbnail {
+    float: left;
+    margin: 0 2%;
+}
+
+.view-detail {
+    min-height: 150px;
+    float: left;
+    width: 55%;
+    background-color: lightyellow;
+}
+
+.view-detail p {
+    word-wrap: break-word;
+}
+
+.clear {
+    clear: both;
+}
+
+#add-category-window {
+    display: none;
+}
+
+.category-window {
+    width: 60%;
+    height: 70%;
+    margin-left: 10%;
+    box-shadow: 2px 2px 10px;
+    background-color: #ffffff;
+}
+
+
+#edit-window {
+    display: none;
+    width: 60%;
+    height: 70%;
+    margin-left: 10%;
+    box-shadow: 2px 2px 10px;
+    background-color: #ffffff;
+}
+
+#delete-view-window {
+    display: none;
+}
+
+#delete-category-window {
+    display: none;
+}
+
+.delete-window {
+    min-width: 20em;
+    min-height: 4em;
+    width: 20%;
+    height: 10%;
+    margin-left: 30%;
+    box-shadow: 2px 2px 10px;
+    background-color: #ffffff;
+}
+
+.two-button-container > :nth-child(1) {
+    float: left;
+    margin: 1em;
+}
+
+.two-button-container > :nth-child(2) {
+    float: right;
+    margin: 1em;
+}
+
+#change-image-window {
+    display: none;
+}
+
+.upload-window {
+    min-width: 20em;
+    min-height: 8em;
+    width: 20%;
+    height: 20%;
+    margin-left: 30%;
+    box-shadow: 2px 2px 10px;
+    background-color: #ffffff;
+}
+
+.file-input {
+    margin: 2em;
+}
+
+#edit-category-window {
+    display: none;
+}
+.fly-window {
+    position: fixed;
+    top: 10%;
+    overflow-y: scroll;
+}
+
+.fly-window .btn-close {
+    position: fixed;
+    border: none;
+    margin: 0.5em 0.5em;
+    right: 20%;
+    background-color: red;
+}
+
+
+.btn-submit {
+    margin-top: 2em;
+    margin-left: 40%;
+    border: none;
+    min-height: 2em;
+    width: 40%;
+    height: 6%;
+}
+
+.input-hover:hover {
+    background-color: tomato;
+}
+
+.lock {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: lightgray;
+    opacity: 0.7;
+}
+
+.input-data-container {
+    padding: 6%;
+}
+    .input-data-container label, .input-data-container input {
+        width: 25%;
+        display: block;
+        float: left;
+        margin-bottom: 2%;
+    }
+
+    .input-data-container label {
+        text-align: right;
+        padding-right: 2%;
+    }
+
+    .two-field-input {
+        width: 100%;
+        margin-left: 25%;
+        margin-bottom: 2%;
+    }
+
+    .two-field-input-child {
+        float: left;
+    }
+
+.input-add-category label, .input-add-category input {
+    width: 25%;
+    display: inline;
+    float: none;
+    margin-bottom: 2%;
+}
+
+.btn-add-category {
+    width: 2em !important;
+}
